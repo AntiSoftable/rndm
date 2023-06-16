@@ -1,0 +1,11 @@
+pragma solidity ^0.8.0;
+
+contract RandomNumberGenerator {
+    uint256 private nonce;
+
+    function generateRandomNumber() public returns (uint256) {
+        nonce++;
+        uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, nonce)));
+        return (randomNumber % 100) + 1; // Generate a random number between 1 and 100
+    }
+}
